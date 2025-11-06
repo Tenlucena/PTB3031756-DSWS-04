@@ -1,5 +1,4 @@
-from . import db
-
+from app import db
 
 class Role(db.Model):
     __tablename__ = 'roles'
@@ -8,8 +7,7 @@ class Role(db.Model):
     users = db.relationship('User', backref='role', lazy='dynamic')
 
     def __repr__(self):
-        return '<Role %r>' % self.name
-
+        return f'<Role {self.name}>'
 
 class User(db.Model):
     __tablename__ = 'users'
@@ -18,4 +16,4 @@ class User(db.Model):
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
 
     def __repr__(self):
-        return '<User %r>' % self.username
+        return f'<User {self.username}>'
